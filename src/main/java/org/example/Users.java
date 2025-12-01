@@ -8,7 +8,11 @@ public class Users {
     String password = "ntsoa";
 
     String selectQuery = "SELECT * FROM USERS";
-    String createQuery = "INSERT INTO USERS (name, firstname, birthdate, email, password) VALUES (?, ?, ?, ?,?)";
+    String createQuery = "INSERT INTO" +
+            " USERS (name, firstname, birthdate, email, password) " +
+            "VALUES (?, ?, ?, ?,?) ON " +
+            "CONFLICT (name, firstname, birthdate, email, password)" +
+            " DO NOTHING RETURNING id_users";
 
     public void getAllUsers(){
         try(Connection connection = DriverManager.getConnection(url,users,password)){
@@ -40,7 +44,12 @@ public class Users {
             ps.setString(4,"email");
             ps.setString(5, "password");
 
-
+            try(ResultSet rs = ps.executeQuery()){
+                if(rs.next()){
+                    int newId = rs.getInt(1);
+                    System.out.println("New Task created !");
+                }
+            }
 
         }catch(SQLException e){
             throw new RuntimeException(e);
