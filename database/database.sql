@@ -1,0 +1,9 @@
+-- Active: 1760942016873@@localhost@5432@users
+CREATE TABLE STUDENT (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    firstname VARCHAR(50) NOT NULL,
+    Birthdate VARCHAR(50) NOT NULL,
+    Group VARCHAR(50) NOT NULL
+);
+
