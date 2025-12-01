@@ -10,6 +10,7 @@ CREATE TABLE USERS (
 
 INSERT INTO USERS (name, firstname, birthdate, email, password) VALUES ('March', 'Jeanne', '1999-4-8', 'Jeanne@gmail.com','j3anM@');
 
+ ALTER TABLE todolist ADD CONSTRAINT uk_unique_users UNIQUE (name, firstname, birthdate, email, password) ;
 
 SELECT * FROM USERS;
 

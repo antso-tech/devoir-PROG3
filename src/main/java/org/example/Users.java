@@ -52,6 +52,9 @@ public class Users {
             }
 
         }catch(SQLException e){
+            if(e.getMessage().contains("dupliquée")){
+                System.out.println("This task is already exists");
+            }
             throw new RuntimeException(e);
 
         }
