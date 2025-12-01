@@ -1,6 +1,7 @@
 package org.example;
 
 import java.sql.*;
+import java.time.LocalDate;
 
 public class Users {
     String url = "jdbc:postgresql://localhost/users";
@@ -34,15 +35,15 @@ public class Users {
 
     }
 
-    public void createNewUser(){
-        try(Connection connection = DriverManager.getConnection(url,users,password)){
+    public void createNewUser(String name, String firstname, LocalDate birthdate, String email, String password){
+        try(Connection connection = DriverManager.getConnection(url,users,this.password)){
             PreparedStatement ps = connection.prepareStatement(createQuery);
 
-            ps.setString(1, "name");
-            ps.setString(2, "firstname");
-            ps.setDate(3, Date.valueOf("birthdate"));
-            ps.setString(4,"email");
-            ps.setString(5, "password");
+            ps.setString(1, name);
+            ps.setString(2, firstname);
+            ps.setDate(3, Date.valueOf(birthdate));
+            ps.setString(4,email);
+            ps.setString(5, password);
 
             try(ResultSet rs = ps.executeQuery()){
                 if(rs.next()){
@@ -62,6 +63,5 @@ public class Users {
     public static void main(String[] args) {
         Users user = new Users();
         user.getAllUsers();
-
     }
 }
