@@ -20,11 +20,11 @@ public class Users {
             Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery(selectQuery);
 
-            if(rs.next()){
-                System.out.println("{name : " + rs.getString("name")
-                        + ", firstname : " + rs.getString("firstname")
-                + ", email : " + rs.getString("email") + ", password : "
-                + rs.getString("password"));
+            while(rs.next()){
+                System.out.println("{ Name : " + rs.getString("name")
+                        + ", Frstname : " + rs.getString("firstname")
+                + ", Email : " + rs.getString("email") + ", password : "
+                + rs.getString("Password") + " }");
             }
 
         }catch (SQLException e){
